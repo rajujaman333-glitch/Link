@@ -40,7 +40,7 @@
 <body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-brand-dark flex flex-col min-h-screen">
 
     <!-- Navigation Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-slate-800">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1d] border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
             <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-2 sm:gap-3">
                 <img src="ELink Logo.png" alt="ELink Logo" class="h-8 sm:h-10 w-auto object-contain" id="navLogo">
@@ -62,23 +62,23 @@
                 </button>
             </div>
         </div>
-
-        <!-- Mobile Drawer Navigation Overlay -->
-<div id="mobileDrawer" class="hidden md:hidden fixed inset-0 top-16 bg-brand-dark z-50 border-b border-slate-800 shadow-2xl transition-all duration-300 px-6 py-6 space-y-4 overflow-y-auto">
-    <button onclick="navigateTo('home')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-        <span>Overview</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
-    </button>
-    <button onclick="navigateTo('about')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-        <span>Relay Vision</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
-    </button>
-    <button onclick="navigateTo('tech')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-        <span>Solar Fleet Specs</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
-    </button>
-    <button onclick="navigateTo('gcc')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-        <span>GCC Multi-City Corridor</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
-    </button>
-</div>
     </header>
+
+    <!-- Mobile Drawer Navigation Overlay (Outside Header for Zero Clipping) -->
+    <div id="mobileDrawer" class="hidden md:hidden fixed inset-x-0 top-16 bottom-0 bg-[#0a0f1d] z-[999] border-t border-slate-800 px-6 py-6 space-y-4 overflow-y-auto">
+        <button onclick="navigateTo('home')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
+            <span>Overview</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        </button>
+        <button onclick="navigateTo('about')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
+            <span>Relay Vision</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        </button>
+        <button onclick="navigateTo('tech')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
+            <span>Solar Fleet Specs</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        </button>
+        <button onclick="navigateTo('gcc')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
+            <span>GCC Multi-City Corridor</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        </button>
+    </div>
 
     <!-- PAGE 1: OVERVIEW -->
     <main id="home" class="page-section active pt-16 sm:pt-20 flex-grow">
