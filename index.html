@@ -12,11 +12,12 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0a0f1d',
-                            navy: '#0f172a',
-                            cyan: '#06b6d4',
-                            blue: '#2563eb',
-                            accent: '#00f2fe'
+                            black: '#020b07',
+                            deepgreen: '#052e16',
+                            midgreen: '#047857',
+                            emerald: '#10b981',
+                            lightgreen: '#34d399',
+                            mint: '#6ee7b7'
                         }
                     }
                 }
@@ -32,15 +33,23 @@
         .page-section.active {
             display: block;
         }
-        .glow-cyan {
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.25);
+        .glow-emerald {
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.45);
+        }
+        .glow-green-card {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+        /* Reusable Dotted Grid Overlay */
+        .dotted-bg-grid {
+            background-image: radial-gradient(#10b981 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
         }
     </style>
 </head>
-<body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-brand-dark flex flex-col min-h-screen">
+<body class="bg-brand-black text-slate-100 font-sans antialiased selection:bg-brand-emerald selection:text-slate-950 flex flex-col min-h-screen">
 
     <!-- Navigation Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1d] border-b border-slate-800">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#020b07]/95 backdrop-blur-md border-b border-emerald-500/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
             <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-2 sm:gap-3">
                 <img src="ELink Logo.png" alt="ELink Logo" class="h-8 sm:h-10 w-auto object-contain" id="navLogo">
@@ -48,105 +57,106 @@
             </a>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium text-slate-300">
-                <button onclick="navigateTo('home')" class="nav-btn hover:text-brand-cyan transition-colors text-brand-cyan" data-page="home">Overview</button>
-                <button onclick="navigateTo('about')" class="nav-btn hover:text-brand-cyan transition-colors" data-page="about">Relay Vision</button>
-                <button onclick="navigateTo('tech')" class="nav-btn hover:text-brand-cyan transition-colors" data-page="tech">Solar Fleet Specs</button>
-                <button onclick="navigateTo('gcc')" class="nav-btn hover:text-brand-cyan transition-colors" data-page="gcc">GCC Multi-City Corridor</button>
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-semibold text-slate-300">
+                <button onclick="navigateTo('home')" class="nav-btn hover:text-brand-lightgreen transition-colors text-brand-emerald" data-page="home">Overview</button>
+                <button onclick="navigateTo('about')" class="nav-btn hover:text-brand-lightgreen transition-colors" data-page="about">Relay Vision</button>
+                <button onclick="navigateTo('tech')" class="nav-btn hover:text-brand-lightgreen transition-colors" data-page="tech">Solar Fleet Specs</button>
+                <button onclick="navigateTo('gcc')" class="nav-btn hover:text-brand-lightgreen transition-colors" data-page="gcc">GCC Multi-City Corridor</button>
             </nav>
 
             <div class="flex items-center gap-2 sm:gap-4">
                 <!-- Mobile Hamburger Button -->
-                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg border border-slate-800 focus:outline-none" aria-label="Toggle Navigation">
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden text-slate-200 hover:text-white p-2 rounded-lg border border-emerald-500/40 focus:outline-none" aria-label="Toggle Navigation">
                     <i id="mobileMenuIcon" class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer Navigation Overlay (Outside Header for Zero Clipping) -->
-    <div id="mobileDrawer" class="hidden md:hidden fixed inset-x-0 top-16 bottom-0 bg-[#0a0f1d] z-[999] border-t border-slate-800 px-6 py-6 space-y-4 overflow-y-auto">
-        <button onclick="navigateTo('home')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-            <span>Overview</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+    <!-- Mobile Drawer Navigation Overlay -->
+    <div id="mobileDrawer" class="hidden md:hidden fixed inset-x-0 top-16 bottom-0 bg-[#020b07] z-[999] border-t border-emerald-500/40 px-6 py-6 space-y-4 overflow-y-auto">
+        <button onclick="navigateTo('home')" class="w-full text-left py-3 text-slate-100 font-semibold border-b border-emerald-500/30 flex items-center justify-between text-base">
+            <span>Overview</span> <i class="fa-solid fa-chevron-right text-xs text-brand-emerald"></i>
         </button>
-        <button onclick="navigateTo('about')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-            <span>Relay Vision</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        <button onclick="navigateTo('about')" class="w-full text-left py-3 text-slate-100 font-semibold border-b border-emerald-500/30 flex items-center justify-between text-base">
+            <span>Relay Vision</span> <i class="fa-solid fa-chevron-right text-xs text-brand-emerald"></i>
         </button>
-        <button onclick="navigateTo('tech')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-            <span>Solar Fleet Specs</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        <button onclick="navigateTo('tech')" class="w-full text-left py-3 text-slate-100 font-semibold border-b border-emerald-500/30 flex items-center justify-between text-base">
+            <span>Solar Fleet Specs</span> <i class="fa-solid fa-chevron-right text-xs text-brand-emerald"></i>
         </button>
-        <button onclick="navigateTo('gcc')" class="w-full text-left py-3 text-slate-200 font-semibold border-b border-slate-800/60 flex items-center justify-between text-base">
-            <span>GCC Multi-City Corridor</span> <i class="fa-solid fa-chevron-right text-xs text-brand-cyan"></i>
+        <button onclick="navigateTo('gcc')" class="w-full text-left py-3 text-slate-100 font-semibold border-b border-emerald-500/30 flex items-center justify-between text-base">
+            <span>GCC Multi-City Corridor</span> <i class="fa-solid fa-chevron-right text-xs text-brand-emerald"></i>
         </button>
     </div>
 
     <!-- PAGE 1: OVERVIEW -->
     <main id="home" class="page-section active pt-16 sm:pt-20 flex-grow">
-        <!-- Hero Section -->
-        <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-28 overflow-hidden bg-gradient-to-b from-brand-dark via-slate-900 to-brand-dark">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <!-- Hero Section with Dotted Grid -->
+        <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-28 overflow-hidden bg-gradient-to-b from-[#02130b] via-[#053823] to-[#02130b]">
+            <div class="absolute inset-0 opacity-30 dotted-bg-grid"></div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-xs font-semibold uppercase tracking-wider mb-6">
-                    <i class="fa-solid fa-bolt"></i> GCC Decentralized Infrastructure Blueprint
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-brand-emerald/50 text-brand-mint text-xs font-bold uppercase tracking-wider mb-6 glow-emerald">
+                    <i class="fa-solid fa-bolt text-brand-lightgreen"></i> GCC Decentralized Infrastructure Blueprint
                 </div>
 
                 <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-5xl mx-auto mb-4 sm:mb-6">
-                    Autonomous Cellular Logistics for the <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-accent">Next Generation GCC Metropolis</span>
+                    Autonomous Cellular Logistics for the <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-lightgreen via-brand-emerald to-brand-mint">Next Generation GCC Metropolis</span>
                 </h1>
 
-                <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 sm:mb-12 leading-relaxed">
-                    Replacing congested long-distance motorways with localized, peer-to-peer micro-zones. E-Link introduces a continuous, solar-powered urban relay grid designed specifically for extreme Middle Eastern climates and zero-friction cross-border commerce.
+                <p class="text-base sm:text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-10 sm:mb-12 leading-relaxed">
+                    Replacing congested long-distance motorways with localized, peer-to-peer micro-zones. E-Link introduces a continuous, solar-powered urban relay grid designed specifically for extreme Middle Eastern climates and zero-friction cross-border commerce[cite: 1, 3].
                 </p>
 
-                <!-- High-Impact Analytical Metrics Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto border-t border-slate-800/80 pt-10">
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-cyan mb-1">40%</div>
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto border-t border-emerald-500/40 pt-10">
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 text-left glow-green-card hover:border-emerald-400 transition-all">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-mint mb-1">40%</div>
                         <div class="text-xs font-bold text-white uppercase">Faster Fulfillment</div>
-                        <p class="text-[11px] text-slate-400 mt-1 leading-snug">Eliminates cross-city highway traffic delays by keeping riders inside fixed local neighborhood tiles.</p>
+                        <p class="text-[11px] text-slate-300 mt-1 leading-snug">Eliminates cross-city highway traffic delays by keeping riders inside fixed local neighborhood tiles[cite: 3].</p>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-cyan mb-1">100%</div>
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 text-left glow-green-card hover:border-emerald-400 transition-all">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-mint mb-1">100%</div>
                         <div class="text-xs font-bold text-white uppercase">Solar Electric Fleet</div>
-                        <p class="text-[11px] text-slate-400 mt-1 leading-snug">Canopy-integrated solar arrays supply active trickle charging and rider shade in 50°C summer heat.</p>
+                        <p class="text-[11px] text-slate-300 mt-1 leading-snug">Canopy-integrated solar arrays supply active trickle charging and rider shade in 50°C summer heat[cite: 3, 6].</p>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-cyan mb-1">Zero</div>
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 text-left glow-green-card hover:border-emerald-400 transition-all">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-mint mb-1">Zero</div>
                         <div class="text-xs font-bold text-white uppercase">Labor Visa Friction</div>
-                        <p class="text-[11px] text-slate-400 mt-1 leading-snug">Domestic riders operate exclusively within home-country hexagons, completely bypassing cross-border labor permits.</p>
+                        <p class="text-[11px] text-slate-300 mt-1 leading-snug">Domestic riders operate exclusively within home-country hexagons, completely bypassing cross-border labor permits[cite: 3].</p>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-cyan mb-1">80+ km</div>
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 text-left glow-green-card hover:border-emerald-400 transition-all">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-mint mb-1">80+ km</div>
                         <div class="text-[10px] sm:text-xs font-bold text-white uppercase">Daily Range / Trike</div>
-                        <p class="text-[11px] text-slate-400 mt-1 leading-snug">Lithium Iron Phosphate (LFP) battery chemistry engineered for high-temperature stability.</p>
+                        <p class="text-[11px] text-slate-300 mt-1 leading-snug">Lithium Iron Phosphate (LFP) battery chemistry engineered for high-temperature stability[cite: 6].</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Executive Summary Section -->
-        <section class="py-12 sm:py-16 bg-brand-navy border-t border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Executive Summary Section with Dotted Grid -->
+        <section class="relative py-12 sm:py-16 bg-gradient-to-b from-[#02130b] via-[#062417] to-[#02130b] border-t border-emerald-500/30 overflow-hidden">
+            <div class="absolute inset-0 opacity-20 dotted-bg-grid"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="bg-slate-900/90 p-6 sm:p-8 rounded-2xl border border-slate-800">
-                        <div class="text-brand-cyan text-2xl mb-3"><i class="fa-solid fa-city"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-emerald-500/40 glow-green-card">
+                        <div class="text-brand-lightgreen text-3xl mb-3"><i class="fa-solid fa-city"></i></div>
                         <h3 class="text-lg font-bold text-white mb-2">Urban Hyper-Density</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                             GCC cities like Doha, Riyadh, and Dubai are undergoing rapid expansion. Traditional point-to-point courier routes cause severe arterial congestion during peak hours, driving up cost-per-delivery.
                         </p>
                     </div>
-                    <div class="bg-slate-900/90 p-6 sm:p-8 rounded-2xl border border-slate-800">
-                        <div class="text-brand-cyan text-2xl mb-3"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-emerald-500/40 glow-green-card">
+                        <div class="text-brand-lightgreen text-3xl mb-3"><i class="fa-solid fa-temperature-arrow-up"></i></div>
                         <h3 class="text-lg font-bold text-white mb-2">Extreme Heat Mitigation</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            Standard two-wheel mopeds expose drivers to extreme solar radiation during summer months. E-Link's covered micro-trikes provide active UV shading and integrated driver cooling systems.
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            Standard two-wheel mopeds expose drivers to extreme solar radiation during summer months. E-Link's covered micro-trikes provide active UV shading and integrated driver cooling systems[cite: 6].
                         </p>
                     </div>
-                    <div class="bg-slate-900/90 p-6 sm:p-8 rounded-2xl border border-slate-800">
-                        <div class="text-brand-cyan text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-leaf"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-emerald-500/40 glow-green-card">
+                        <div class="text-brand-lightgreen text-3xl mb-3"><i class="fa-solid fa-leaf"></i></div>
                         <h3 class="text-lg font-bold text-white mb-2">GCC Vision 2030 Alignment</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                             Fully aligns with Qatar National Vision 2030 and Saudi Vision 2030 sustainability initiatives by eliminating carbon emissions from last-mile fulfillment corridors.
                         </p>
                     </div>
@@ -157,24 +167,26 @@
 
     <!-- PAGE 2: RELAY VISION -->
     <main id="about" class="page-section pt-16 sm:pt-20 flex-grow">
-        <section class="py-12 sm:py-20 bg-brand-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="relative py-12 sm:py-20 bg-gradient-to-b from-[#02130b] via-[#073621] to-[#02130b] overflow-hidden">
+            <div class="absolute inset-0 opacity-30 dotted-bg-grid"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center mb-12 sm:mb-16">
-                    <span class="text-brand-cyan text-xs font-bold uppercase tracking-wider">The Operational Philosophy</span>
+                    <span class="text-brand-lightgreen text-xs font-bold uppercase tracking-wider">The Operational Philosophy</span>
                     <h1 class="text-2xl sm:text-5xl font-black text-white mt-2 mb-4 sm:mb-6">Decentralized Cellular Relay Mechanics</h1>
-                    <p class="text-slate-400 max-w-3xl mx-auto text-sm sm:text-lg leading-relaxed">
-                        Moving away from single-courier travel to an interconnected network of autonomous hexagonal delivery zones.
+                    <p class="text-slate-300 max-w-3xl mx-auto text-sm sm:text-lg leading-relaxed">
+                        Moving away from single-courier travel to an interconnected network of autonomous hexagonal delivery zones[cite: 3].
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
-                    <div class="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-red-500/20 bg-red-950/10">
+                    <div class="bg-gradient-to-br from-[#240a0a] to-[#0f0303] p-6 sm:p-8 rounded-2xl border border-red-500/30">
                         <div class="text-red-400 text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Traditional Point-to-Point Logistics</h3>
-                        <ul class="text-slate-400 text-xs sm:text-sm space-y-2.5 mt-4">
+                        <ul class="text-slate-300 text-xs sm:text-sm space-y-2.5 mt-4">
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
-                                <span>Riders navigate 25+ km across arterial highways per delivery.</span>
+                                <span>Riders navigate 25+ km across arterial highways per delivery[cite: 2].</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
@@ -186,59 +198,58 @@
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
-                                <span>High fuel consumption and rapid vehicle wear-and-tear.</span>
+                                <span>High fuel consumption and rapid vehicle wear-and-tear[cite: 2, 7].</span>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-brand-cyan/40 bg-brand-cyan/5">
-                        <div class="text-brand-cyan text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-hexagon-nodes"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-brand-emerald/50 glow-green-card">
+                        <div class="text-brand-lightgreen text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-hexagon-nodes"></i></div>
                         <h3 class="text-lg sm:text-xl font-bold text-white mb-2">The E-Link Hexagonal Micro-Grid</h3>
-                        <ul class="text-slate-300 text-xs sm:text-sm space-y-2.5 mt-4">
+                        <ul class="text-slate-200 text-xs sm:text-sm space-y-2.5 mt-4">
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-brand-cyan mt-1"></i>
-                                <span>Cities are mapped into uniform 6-sided neighborhood micro-zones.</span>
+                                <i class="fa-solid fa-check text-brand-mint mt-1"></i>
+                                <span>Cities are mapped into uniform 6-sided neighborhood micro-zones[cite: 3].</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-brand-cyan mt-1"></i>
-                                <span>Riders stay inside local neighborhood streets, operating short, efficient loops.</span>
+                                <i class="fa-solid fa-check text-brand-mint mt-1"></i>
+                                <span>Riders stay inside local neighborhood streets, operating short, efficient loops[cite: 3].</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-brand-cyan mt-1"></i>
-                                <span>Parcels are handed off at hexagonal border exchange nodes in under 1 second via QR scans.</span>
+                                <i class="fa-solid fa-check text-brand-mint mt-1"></i>
+                                <span>Parcels are handed off at hexagonal border exchange nodes in under 1 second via QR scans[cite: 3, 5].</span>
                             </li>
                             <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-brand-cyan mt-1"></i>
-                                <span>Reduces city-wide delivery transit times by up to 40%.</span>
+                                <i class="fa-solid fa-check text-brand-mint mt-1"></i>
+                                <span>Reduces city-wide delivery transit times by up to 40%[cite: 1].</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Deep Dive Architecture Step-by-Step -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-10">
+                <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 rounded-2xl p-6 sm:p-10 glow-green-card">
                     <h2 class="text-xl sm:text-3xl font-extrabold text-white mb-8 text-center">How the Peer-to-Peer Relay Works</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-                        <div class="p-6 rounded-xl bg-slate-950 border border-slate-800">
-                            <div class="text-brand-cyan font-mono text-xs font-bold uppercase mb-2">Stage 01</div>
+                        <div class="p-6 rounded-xl bg-[#020b07] border border-emerald-500/30">
+                            <div class="text-brand-mint font-mono text-xs font-bold uppercase mb-2">Stage 01</div>
                             <h4 class="text-lg font-bold text-white mb-2">Local Merchant Staging</h4>
-                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                                Packages enter local neighborhood staging points. The routing engine assigns a localized zone rider operating within Hexagon Alpha.
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                                Packages enter local neighborhood staging points. The routing engine assigns a localized zone rider operating within Hexagon Alpha[cite: 3].
                             </p>
                         </div>
-                        <div class="p-6 rounded-xl bg-slate-950 border border-slate-800">
-                            <div class="text-brand-cyan font-mono text-xs font-bold uppercase mb-2">Stage 02</div>
+                        <div class="p-6 rounded-xl bg-[#020b07] border border-emerald-500/30">
+                            <div class="text-brand-mint font-mono text-xs font-bold uppercase mb-2">Stage 02</div>
                             <h4 class="text-lg font-bold text-white mb-2">Boundary QR Hand-off</h4>
-                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                                Rider Alpha transfers the package to Rider Beta at a designated boundary node. Digital scanning verifies parcel integrity in under 1 second.
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                                Rider Alpha transfers the package to Rider Beta at a designated boundary node. Digital scanning verifies parcel integrity in under 1 second[cite: 3, 5].
                             </p>
                         </div>
-                        <div class="p-6 rounded-xl bg-slate-950 border border-slate-800">
-                            <div class="text-brand-cyan font-mono text-xs font-bold uppercase mb-2">Stage 03</div>
+                        <div class="p-6 rounded-xl bg-[#020b07] border border-emerald-500/30">
+                            <div class="text-brand-mint font-mono text-xs font-bold uppercase mb-2">Stage 03</div>
                             <h4 class="text-lg font-bold text-white mb-2">Neighborhood Last-Mile</h4>
-                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                                Rider Beta completes final drop-off using local neighborhood streets, avoiding major highway arterials entirely.
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                                Rider Beta completes final drop-off using local neighborhood streets, avoiding major highway arterials entirely[cite: 3].
                             </p>
                         </div>
                     </div>
@@ -249,70 +260,72 @@
 
     <!-- PAGE 3: SOLAR FLEET SPECS -->
     <main id="tech" class="page-section pt-16 sm:pt-20 flex-grow">
-        <section class="py-12 sm:py-20 bg-brand-navy">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="relative py-12 sm:py-20 bg-gradient-to-b from-[#02130b] via-[#052e1b] to-[#02130b] overflow-hidden">
+            <div class="absolute inset-0 opacity-30 dotted-bg-grid"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center mb-12 sm:mb-16">
-                    <span class="text-brand-cyan text-xs font-bold uppercase tracking-wider">Hardware & Mobility Engineering</span>
+                    <span class="text-brand-lightgreen text-xs font-bold uppercase tracking-wider">Hardware & Mobility Engineering</span>
                     <h1 class="text-2xl sm:text-5xl font-black text-white mt-2 mb-4 sm:mb-6">Extreme-Climate Solar E-Fleet</h1>
-                    <p class="text-slate-400 max-w-3xl mx-auto text-sm sm:text-base">
-                        Engineered specifically to withstand Middle Eastern summer heat conditions while maintaining zero emissions.
+                    <p class="text-slate-300 max-w-3xl mx-auto text-sm sm:text-base">
+                        Engineered specifically to withstand Middle Eastern summer heat conditions while maintaining zero emissions[cite: 1, 6].
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
-                    <div class="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-800">
-                        <div class="text-brand-cyan text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-solar-panel"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-emerald-500/40 glow-green-card">
+                        <div class="text-brand-lightgreen text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-solar-panel"></i></div>
                         <h3 class="text-lg sm:text-xl font-bold text-white mb-2">200W Overhead Solar Canopy</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            Integrated flexible photovoltaic panels continuously trickle-charge the battery during daily delivery rounds while providing vital sun shade for riders.
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            Integrated flexible photovoltaic panels continuously trickle-charge the battery during daily delivery rounds while providing vital sun shade for riders[cite: 3, 6].
                         </p>
                     </div>
 
-                    <div class="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-800">
-                        <div class="text-brand-cyan text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-car-battery"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-emerald-500/40 glow-green-card">
+                        <div class="text-brand-lightgreen text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-car-battery"></i></div>
                         <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Heat-Resistant LFP Batteries</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            Utilizes Lithium Iron Phosphate (LiFePO4) chemistry with over 3,000 thermal cycles, engineered to operate reliably in temperatures exceeding 50°C.
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            Utilizes Lithium Iron Phosphate (LiFePO4) chemistry with over 3,000 thermal cycles, engineered to operate reliably in temperatures exceeding 50°C[cite: 6].
                         </p>
                     </div>
 
-                    <div class="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-800">
-                        <div class="text-brand-cyan text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-fan"></i></div>
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 sm:p-8 rounded-2xl border border-emerald-500/40 glow-green-card">
+                        <div class="text-brand-lightgreen text-2xl sm:text-3xl mb-3"><i class="fa-solid fa-fan"></i></div>
                         <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Active Rider Cooling System</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            Micro-canopies incorporate battery-powered directional ventilation fans and insulated cargo compartments to safeguard heat-sensitive deliveries.
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            Micro-canopies incorporate battery-powered directional ventilation fans and insulated cargo compartments to safeguard heat-sensitive deliveries[cite: 6].
                         </p>
                     </div>
                 </div>
 
                 <!-- Technical Specification Sheet -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto">
-                    <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-800 pb-4">Vehicle Specification Overview</h3>
+                <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto glow-green-card">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-emerald-500/40 pb-4">Vehicle Specification Overview</h3>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-                        <div class="flex justify-between py-2 border-b border-slate-800/60">
-                            <span class="text-slate-400">Chassis Architecture</span>
-                            <span class="text-white font-semibold">3-Wheel Electric Utility Trike</span>
+                        <div class="flex justify-between py-2 border-b border-emerald-500/20">
+                            <span class="text-slate-300">Chassis Architecture</span>
+                            <span class="text-white font-semibold">3-Wheel Electric Utility Trike[cite: 6]</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-slate-800/60">
-                            <span class="text-slate-400">Solar Output</span>
-                            <span class="text-brand-cyan font-semibold">200 Watts (Flexible PV)</span>
+                        <div class="flex justify-between py-2 border-b border-emerald-500/20">
+                            <span class="text-slate-300">Solar Output</span>
+                            <span class="text-brand-mint font-semibold">200 Watts (Flexible PV)[cite: 3, 6]</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-slate-800/60">
-                            <span class="text-slate-400">Daily Operational Range</span>
+                        <div class="flex justify-between py-2 border-b border-emerald-500/20">
+                            <span class="text-slate-300">Daily Operational Range</span>
                             <span class="text-white font-semibold">80 km - 100 km (with Solar Input)</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-slate-800/60">
-                            <span class="text-slate-400">Battery Capacity</span>
-                            <span class="text-white font-semibold">60V 45Ah LFP Cell Pack</span>
+                        <div class="flex justify-between py-2 border-b border-emerald-500/20">
+                            <span class="text-slate-300">Battery Capacity</span>
+                            <span class="text-white font-semibold">60V 45Ah LFP Cell Pack[cite: 6]</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-slate-800/60">
-                            <span class="text-slate-400">Cargo Payload Volume</span>
-                            <span class="text-white font-semibold">350 Liters (Insulated Box)</span>
+                        <div class="flex justify-between py-2 border-b border-emerald-500/20">
+                            <span class="text-slate-300">Cargo Payload Volume</span>
+                            <span class="text-white font-semibold">350 Liters (Insulated Box)[cite: 6]</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-slate-800/60">
-                            <span class="text-slate-400">Max Operational Temp</span>
-                            <span class="text-brand-cyan font-semibold">Up to 55°C</span>
+                        <div class="flex justify-between py-2 border-b border-emerald-500/20">
+                            <span class="text-slate-300">Max Operational Temp</span>
+                            <span class="text-brand-mint font-semibold">Up to 55°C</span>
                         </div>
                     </div>
                 </div>
@@ -322,55 +335,57 @@
 
     <!-- PAGE 4: GCC MULTI-CITY CORRIDOR -->
     <main id="gcc" class="page-section pt-16 sm:pt-20 flex-grow">
-        <section class="py-12 sm:py-20 bg-brand-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="relative py-12 sm:py-20 bg-gradient-to-b from-[#02130b] via-[#073621] to-[#02130b] overflow-hidden">
+            <div class="absolute inset-0 opacity-30 dotted-bg-grid"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center mb-12 sm:mb-16">
-                    <span class="text-brand-cyan text-xs font-bold uppercase tracking-wider">Regional Trade Alignment</span>
+                    <span class="text-brand-lightgreen text-xs font-bold uppercase tracking-wider">Regional Trade Alignment</span>
                     <h1 class="text-2xl sm:text-5xl font-black text-white mt-2 mb-4 sm:mb-6">GCC Multi-City Corridor Integration</h1>
-                    <p class="text-slate-400 max-w-3xl mx-auto text-sm sm:text-base">
-                        Connecting major commercial hubs across Qatar, Saudi Arabia, and the UAE through a unified micro-relay operational model.
+                    <p class="text-slate-300 max-w-3xl mx-auto text-sm sm:text-base">
+                        Connecting major commercial hubs across Qatar, Saudi Arabia, and the UAE through a unified micro-relay operational model[cite: 1, 3].
                     </p>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 p-6 sm:p-10 rounded-2xl max-w-4xl mx-auto mb-12">
-                    <div class="text-brand-cyan text-3xl mb-4"><i class="fa-solid fa-passport"></i></div>
+                <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] border border-emerald-500/40 p-6 sm:p-10 rounded-2xl max-w-4xl mx-auto mb-12 glow-green-card">
+                    <div class="text-brand-lightgreen text-3xl mb-4"><i class="fa-solid fa-passport"></i></div>
                     <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">The Zero-Visa Cross-Border Model</h3>
-                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                        Cross-border freight across the GCC typically faces delays due to driver visa regulations, border checkpoints, and vehicle permits. E-Link solves this by separating regional trunk transport from domestic last-mile delivery:
+                    <p class="text-slate-200 text-xs sm:text-sm leading-relaxed mb-6">
+                        Cross-border freight across the GCC typically faces delays due to driver visa regulations, border checkpoints, and vehicle permits. E-Link solves this by separating regional trunk transport from domestic last-mile delivery[cite: 2, 3]:
                     </p>
                     
-                    <div class="space-y-4 border-t border-slate-800 pt-6">
+                    <div class="space-y-4 border-t border-emerald-500/40 pt-6">
                         <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</div>
-                            <p class="text-xs sm:text-sm text-slate-300"><strong class="text-white">Inter-State Trunk Transit:</strong> Heavy long-haul electric cargo trucks transport sealed bulk containers between international GCC hubs along primary highways.</p>
+                            <div class="w-6 h-6 rounded-full bg-brand-emerald/30 text-brand-mint flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</div>
+                            <p class="text-xs sm:text-sm text-slate-200"><strong class="text-white">Inter-State Trunk Transit:</strong> Heavy long-haul electric cargo trucks transport sealed bulk containers between international GCC hubs along primary highways.</p>
                         </div>
                         <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</div>
-                            <p class="text-xs sm:text-sm text-slate-300"><strong class="text-white">Domestic Hexagon Injection:</strong> At city border logistics hubs, containers are unsealed and parcel batches are injected directly into local urban hex grids.</p>
+                            <div class="w-6 h-6 rounded-full bg-brand-emerald/30 text-brand-mint flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</div>
+                            <p class="text-xs sm:text-sm text-slate-200"><strong class="text-white">Domestic Hexagon Injection:</strong> At city border logistics hubs, containers are unsealed and parcel batches are injected directly into local urban hex grids[cite: 3].</p>
                         </div>
                         <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</div>
-                            <p class="text-xs sm:text-sm text-slate-300"><strong class="text-white">Local Driver Containment:</strong> Local couriers operate exclusively within domestic zones, eliminating the need for international transit permits.</p>
+                            <div class="w-6 h-6 rounded-full bg-brand-emerald/30 text-brand-mint flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</div>
+                            <p class="text-xs sm:text-sm text-slate-200"><strong class="text-white">Local Driver Containment:</strong> Local couriers operate exclusively within domestic zones, eliminating the need for international transit permits[cite: 3].</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Regional Network Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center max-w-4xl mx-auto">
-                    <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 rounded-xl border border-emerald-500/40 glow-green-card">
                         <div class="text-xl font-bold text-white mb-1">Qatar Network</div>
-                        <div class="text-xs text-brand-cyan mb-3 font-mono">Doha • Lusail • Al Rayyan</div>
-                        <p class="text-slate-400 text-xs">High-density urban coverage connected directly to QDB startup incubator zones.</p>
+                        <div class="text-xs text-brand-mint mb-3 font-mono">Doha • Lusail • Al Rayyan</div>
+                        <p class="text-slate-300 text-xs">High-density urban coverage connected directly to QDB startup incubator zones[cite: 1, 8].</p>
                     </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 rounded-xl border border-emerald-500/40 glow-green-card">
                         <div class="text-xl font-bold text-white mb-1">Saudi Arabia Network</div>
-                        <div class="text-xs text-brand-cyan mb-3 font-mono">Riyadh • Dammam • Jeddah</div>
-                        <p class="text-slate-400 text-xs">Wide-area cellular grid serving major residential and commercial distribution corridors.</p>
+                        <div class="text-xs text-brand-mint mb-3 font-mono">Riyadh • Dammam • Jeddah</div>
+                        <p class="text-slate-300 text-xs">Wide-area cellular grid serving major residential and commercial distribution corridors.</p>
                     </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="bg-gradient-to-br from-[#0a2e1d] to-[#03140c] p-6 rounded-xl border border-emerald-500/40 glow-green-card">
                         <div class="text-xl font-bold text-white mb-1">UAE Network</div>
-                        <div class="text-xs text-brand-cyan mb-3 font-mono">Dubai • Abu Dhabi • Sharjah</div>
-                        <p class="text-slate-400 text-xs">Hyper-local last-mile fulfillment integrated with smart city transit infrastructure.</p>
+                        <div class="text-xs text-brand-mint mb-3 font-mono">Dubai • Abu Dhabi • Sharjah</div>
+                        <p class="text-slate-300 text-xs">Hyper-local last-mile fulfillment integrated with smart city transit infrastructure.</p>
                     </div>
                 </div>
             </div>
@@ -378,7 +393,7 @@
     </main>
 
     <!-- Clean Footer -->
-    <footer class="bg-brand-dark py-8 sm:py-12 border-t border-slate-800/80 mt-auto">
+    <footer class="bg-brand-black py-8 sm:py-12 border-t border-emerald-500/30 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-3">
@@ -386,14 +401,14 @@
                     <span class="text-base sm:text-lg font-bold text-white tracking-wider">E-LINK</span>
                 </div>
                 
-                <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs text-slate-400">
-                    <button onclick="navigateTo('home')" class="hover:text-brand-cyan">Overview</button>
-                    <button onclick="navigateTo('about')" class="hover:text-brand-cyan">Relay Vision</button>
-                    <button onclick="navigateTo('tech')" class="hover:text-brand-cyan">Solar Specs</button>
-                    <button onclick="navigateTo('gcc')" class="hover:text-brand-cyan">GCC Corridor</button>
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs text-slate-300">
+                    <button onclick="navigateTo('home')" class="hover:text-brand-mint">Overview</button>
+                    <button onclick="navigateTo('about')" class="hover:text-brand-mint">Relay Vision</button>
+                    <button onclick="navigateTo('tech')" class="hover:text-brand-mint">Solar Specs</button>
+                    <button onclick="navigateTo('gcc')" class="hover:text-brand-mint">GCC Corridor</button>
                 </div>
 
-                <div class="text-[10px] sm:text-xs text-slate-500 text-center md:text-right">
+                <div class="text-[10px] sm:text-xs text-slate-400 text-center md:text-right">
                     &copy; 2026 E-Link Logistics & Micro-Mobility Network. All rights reserved.
                 </div>
             </div>
@@ -433,9 +448,9 @@
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 if (btn.getAttribute('data-page') === pageId) {
-                    btn.classList.add('text-brand-cyan');
+                    btn.classList.add('text-brand-emerald');
                 } else {
-                    btn.classList.remove('text-brand-cyan');
+                    btn.classList.remove('text-brand-emerald');
                 }
             });
         }
@@ -444,7 +459,7 @@
             const logo = document.getElementById('navLogo');
             if (logo) {
                 logo.onerror = function() {
-                    this.outerHTML = '<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-cyan to-brand-blue flex items-center justify-center text-slate-900 font-black text-lg shadow-md">E</div>';
+                    this.outerHTML = '<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-emerald to-brand-midgreen flex items-center justify-center text-slate-950 font-black text-lg shadow-md">E</div>';
                 };
             }
 
